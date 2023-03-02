@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Profile</title>
+
+        <!-- Google Fonts -->
+    	<link rel="preconnect" href="https://fonts.googleapis.com">
+	    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    	<link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&family=Roboto+Slab:wght@600&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+        <!-- CSS Link -->
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{ % static 'style.css' % }">
+
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+        <!-- Favicon -->
+	    <link rel="icon" type="image/x-icon" href="https://drive.google.com/uc?export=download&id=1aL2fSng4Hr4xDVKMHIuqbbrbtTkpnEqk">
+
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                background-color: beige;
+            }
+
+            h1, h4 {
+                color: #B47C54;
+                font-family: "Roboto Slab", sans-serif;
+            }
+
+            p {
+                font-family: "Montserrat", sans-serif;
+            }
+
+            #profile_pic {
+                height: 20%;
+                width: 20%;
+                border: 3px solid burlywood;
+            }
+        </style>
+    </head>
+
+    <body class="container-fluid text-center">
+        
+        <img id="profile_pic" src="{{ user.profile.profile_picture.url }}" class="rounded-circle mt-5 mb-3">
+        <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+        <h4>user: {{ user }}</h4>
+        <p>Description: {{ user.profile.description }}</p>
+
+        <form>
+            <button type="submit" class="btn btn-info">Edit Profile</button>
+        </form>
+    </body>
+</html>
