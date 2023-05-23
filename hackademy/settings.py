@@ -32,15 +32,19 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'activity1', # my app
-    'crispy_forms', # crispy form
-    'crispy_bootstrap4', # bootstrap
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'activity1', # my app
+    'rest_framework', # installed Rest framework
+    'api', # exercise API
+    'crispy_forms', # crispy form
+    'crispy_bootstrap4', # bootstrap
+    'rest_authtoken',
 ]
 
 MIDDLEWARE = [
@@ -142,3 +146,13 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 LOGIN_REDIRECT_URL = "/profile"
 LOGOUT_REDIRECT_URL = "/login"
+
+REST_FRAMEWORK = {
+   'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+   ),
+   'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAdminUser',
+   ),
+}

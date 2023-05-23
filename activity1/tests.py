@@ -22,5 +22,3 @@ class TestRedirect(TestCase):
     def test_url_valid(self):
         url = reverse('profile_view')
         self.assertEquals(resolve(url).func,profile_view)
-
-        
