@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User, Group
 # from rest_framework import viewsets
 # from rest_framework import permissions
+from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from api.serializers import UserSerializer #GroupSerializer
@@ -37,16 +38,17 @@ def getUser(request):
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def getUserById(request, id):
-    user = get_object_or_404(User, id=id)
+    users = get_object_or_404(User, id=id)
     if request.method == 'GET':
-        serializer_class = UserSerializer(user)
+        serializer_class = UserSerializer(users)
         return Response(serializer_class.data)
     elif request.method == 'PUT':
-        serializer_class = UserSerializer(data=request.data)
+        serializer_class = UserSerializer(users, data=request.data)
         if serializer_class.is_valid():
             serializer_class.save()
             return Response(serializer_class.data)
+        return Response(serializer_class.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method == 'DELETE':
-        user.delete()
+        users.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
